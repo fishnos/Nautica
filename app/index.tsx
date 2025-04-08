@@ -3,9 +3,11 @@ import { View, Text, StyleSheet } from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Home</Text>
-      <Link href="/(tabs)/(home)/details">View details</Link>
+    <View style = {styles.container}>
+      <Text style = {styles.welcome}>Welcome!</Text>
+      <Link href = "/tabs/about/details">
+        <Text style = {styles.about}>Go to about page</Text>
+      </Link>
     </View>
   );
 }
@@ -16,4 +18,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  welcome: {
+    fontSize: 50,
+    fontWeight: 'bold',
+    color: 'dodgerblue',
+  },
+
+  about: {
+    fontSize: 20,
+    fontWeight: 'semibold',
+    color: 'lightslategray',
+  }
 });

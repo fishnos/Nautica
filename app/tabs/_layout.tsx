@@ -1,6 +1,6 @@
 import { Stack } from 'expo-router';
 
-export default function RootLayout() {
+export default function TabsLayout() {
   return (
     <Stack
       screenOptions = {{
@@ -12,8 +12,7 @@ export default function RootLayout() {
           fontWeight: 'bold',
         },
       }}>
-      <Stack.Screen name = "tabs"/>
-      <Stack.Screen name = "home"/>
+      <Stack.Screen name = "tabs" />
     </Stack>
   );
 }
