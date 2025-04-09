@@ -7,7 +7,30 @@ export default function TabsLayout() {
         name = "index"
         options = {{
           headerShown: false,
-          title: 'Home',
+        }}
+      />
+      <Tabs.Screen 
+        name = "details"
+        options = {{
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen 
+        name = "profile"
+        options = {{
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen 
+        name = "library"
+        options = {{
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen 
+        name = "book-store"
+        options = {{
+          headerShown: false,
         }}
       />
     </Tabs>
