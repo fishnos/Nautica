@@ -5,7 +5,7 @@ export default function HomeScreen() {
   return (
     <View style = {styles.container}>
       <Text style = {styles.welcome}>Welcome!</Text>
-      <Link href = "/tabs/about/details">
+      <Link href = "/tabs/details">
         <Text style = {styles.about}>Go to about page</Text>
       </Link>
     </View>
