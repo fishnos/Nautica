@@ -1,33 +1,5 @@
-import { Link } from 'expo-router';
-import { View, Text, StyleSheet } from 'react-native';
+import { Redirect } from 'expo-router';
 
-export default function HomeScreen() {
-  return (
-    <View style = {styles.container}>
-      <Text style = {styles.welcome}>Welcome!</Text>
-      <Link href = "/tabs/details">
-        <Text style = {styles.about}>Go to about page</Text>
-      </Link>
-    </View>
-  );
+export default function RootIndex() {
+  return <Redirect href = "/tabs/home"/>;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  welcome: {
-    fontSize: 50,
-    fontWeight: 'bold',
-    color: 'dodgerblue',
-  },
-
-  about: {
-    fontSize: 20,
-    fontWeight: 'semibold',
-    color: 'lightslategray',
-  }
-});
