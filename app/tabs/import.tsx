@@ -17,11 +17,11 @@ export default function ImportScreen() {
         >
           <View style = {{flex: 1, backgroundColor: 'white', padding: 60}}>
             <View style = {styles.modalView}>
-              <Text style = {styles.modalText}>Hello World!</Text>
+              <Text style = {styles.modalText}>Import:</Text>
               <Pressable
                 style = {[styles.button, styles.buttonClose]}
                 onPress = {() => setModalVisible(!modalVisible)}>
-                <Text style = {styles.textStyle}>Hide Modal</Text>
+                <Text style = {styles.textStyle}>Back to tabs</Text>
               </Pressable>
             </View>
           </View>
@@ -29,7 +29,7 @@ export default function ImportScreen() {
         <Pressable
           style = {[styles.button, styles.buttonOpen]}
           onPress = {() => setModalVisible(true)}>
-          <Text style = {styles.textStyle}>Show Modal</Text>
+          <Text style = {styles.textStyle}>Import here!</Text>
         </Pressable>
       </SafeAreaView>
     </SafeAreaProvider>
