@@ -1,20 +1,16 @@
 import { Tabs } from 'expo-router';
 import { Image } from 'react-native';
 import React from 'react';
+import TabBar from '@/components/TabBar';
 
 export default function TabsLayout() {
   return (
-    <Tabs>
+    <Tabs tabBar = {props => <TabBar {...props} />}>
       <Tabs.Screen 
         name = "home"
         options = {{
           headerShown: false,
           title: "Home",
-          tabBarIcon: ({ }) => (
-            <>
-              <Image source = {require('@/assets/icons/home.png')}/>
-            </>
-          )
         }}
       />
       <Tabs.Screen 
@@ -22,11 +18,6 @@ export default function TabsLayout() {
         options = {{
           headerShown: false,
           title: "Import",
-          tabBarIcon: ({ }) => (
-            <>
-              <Image source = {require('@/assets/icons/import.png')}/>
-            </>
-          )
         }}
       />
       <Tabs.Screen 
@@ -34,11 +25,6 @@ export default function TabsLayout() {
         options = {{
           headerShown: false,
           title: "Profile",
-          tabBarIcon: ({ }) => (
-            <>
-              <Image source = {require('@/assets/icons/profile.png')}/>
-            </>
-          )
         }}
       />
       <Tabs.Screen 
@@ -46,12 +32,6 @@ export default function TabsLayout() {
         options = {{
           headerShown: false,
           title: "Library",
-          //need to add animations from closed to open here
-          tabBarIcon: ({ }) => (
-            <>
-              <Image source = {require('@/assets/icons/open-library.png')}/>
-            </>
-          )
         }}
       />
       <Tabs.Screen 
@@ -59,11 +39,6 @@ export default function TabsLayout() {
         options = {{
           headerShown: false,
           title: "Book Store",
-          tabBarIcon: ({ }) => (
-            <>
-              <Image source = {require('@/assets/icons/archive.png')}/>
-            </>
-          )
         }}
       />
     </Tabs>
