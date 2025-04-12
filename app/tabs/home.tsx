@@ -8,8 +8,8 @@ export default function HomeScreen() {
         <SafeAreaView style = {styles.container}>
             <View style = {styles.container}>
                 <Text style = {styles.welcome}>Welcome!</Text>
-                <Link href = "/tabs/details">
-                    <Text style = {styles.about}>Go to about page</Text>
+                <Link href = "/tabs/import">
+                    <Text style = {styles.about}>Go to import page</Text>
                 </Link>
             </View>
         </SafeAreaView>

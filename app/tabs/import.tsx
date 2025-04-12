@@ -2,16 +2,13 @@ import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { View, Text, StyleSheet } from 'react-native';
 import { Link } from 'expo-router';
 
-export default function DetailsScreen() {
+export default function ImportScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style = {styles.container}>
         <View style={styles.container}>
           <Text></Text>
-          <Text style = {styles.details1}>About me:</Text>
-            <Link href = "https://github.com/fishnos">
-                <Text style = {styles.details2}>Support me on Github</Text>
-            </Link>
+          <Text style = {styles.import}>This is the import page! Make your first import:</Text>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>
@@ -25,15 +22,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 
-  details1: {
-    fontSize: 40,
+  import: {
+    fontSize: 30,
     fontWeight: 'bold',
     color: 'dodgerblue',
   },
-
-  details2: {
-    fontSize: 20,
-    fontWeight: 'semibold',
-    color: 'lightslategray',
-  }
 });
