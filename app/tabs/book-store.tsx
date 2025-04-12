@@ -2,7 +2,7 @@ import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function BookStore() {
+export default function BookStoreScreen() {
     return (
         <SafeAreaProvider>
           <SafeAreaView style = {styles.container}>

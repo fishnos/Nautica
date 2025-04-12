@@ -2,7 +2,7 @@ import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function Home() {
+export default function HomeScreen() {
   return (
     <SafeAreaProvider>
         <SafeAreaView style = {styles.container}>

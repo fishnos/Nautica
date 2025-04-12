@@ -2,7 +2,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function Profile() {
+export default function ProfileScreen() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style = {styles.container}>

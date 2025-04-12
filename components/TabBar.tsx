@@ -5,20 +5,23 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Feather from '@expo/vector-icons/Feather';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import AntDesign from '@expo/vector-icons/AntDesign'
-import Profile from '@/app/tabs/profile';
-import Home from '@/app/tabs/home';
+import ProfileScreen from '@/app/tabs/profile';
+import HomeScreen from '@/app/tabs/home';
+import ImportScreen from '@/app/tabs/import';
+import LibraryScreen from '@/app/tabs/library';
+import BookStoreScreen from '@/app/tabs/book-store';
 
 export default function TabBar({ state, descriptors, navigation }: { state: any; descriptors: any; navigation: any }) {
   const { colors } = useTheme();
   const { buildHref } = useLinkBuilder();
 
-  const icons = {
-    home: (props: any) => <Feather name = "home" size = {24} {...props}/>,
-    import: (props: any) => <MaterialIcons name = "library-add" size = {24} {...props}/>,
-    profile: (props: any) => <AntDesign name = "user" size = {24} {...props}/>,
-    library: (props: any) => <MaterialIcons name = "library-books" size = {24} {...props}/>,
-    bookStore: (props: any) => <Feather name = "book" size = {24} {...props}/>,
-  }
+  // const icons = {
+  //   home: (props: any) => <Feather name = "home" size = {24} {...props}/>,
+  //   import: (props: any) => <MaterialIcons name = "library-add" size = {24} {...props}/>,
+  //   profile: (props: any) => <AntDesign name = "user" size = {24} {...props}/>,
+  //   library: (props: any) => <MaterialIcons name = "library-books" size = {24} {...props}/>,
+  //   bookStore: (props: any) => <Feather name = "book" size = {24} {...props}/>,
+  // }
 
   return (
     <View style = {styles.bar}>
@@ -54,7 +57,7 @@ export default function TabBar({ state, descriptors, navigation }: { state: any;
 
         return (
           <PlatformPressable
-            key = {route.name}
+            key = {route.key}
             style = {styles.barItem}
             href = {buildHref(route.name, route.params)}
             accessibilityState = {isFocused ? { selected: true } : {}}
@@ -63,7 +66,8 @@ export default function TabBar({ state, descriptors, navigation }: { state: any;
             onPress = {onPress}
             onLongPress = {onLongPress}
           >
-            <Text style={{ color: isFocused ? colors.primary : colors.text }}>
+            {getIcon(route.name)}
+            <Text style = {{ color: isFocused ? colors.primary : colors.text }}>
               {label}
             </Text>
           </PlatformPressable>
@@ -71,13 +75,31 @@ export default function TabBar({ state, descriptors, navigation }: { state: any;
       })}
     </View>
   );
+
+  function getIcon(routeName: string) {
+    switch(routeName) {
+      case "home":
+        return <Feather name = "home" size = {24}/>
+      case "import":
+        return <MaterialIcons name = "library-add" size = {24}/>
+      case "profile":
+        return <AntDesign name = "user" size = {24}/>
+      case "library":
+        return <MaterialIcons name = "library-books" size = {24}/>
+      case "book-store":
+        return <Feather name = "book" size = {24}/>
+    }
+  }
 }
 
 const Tabs = createBottomTabNavigator({
   tabBar: (props) => <TabBar {...props} />,
   screens: {
-    Home: Home,
-    Profile: Profile,
+    Home: HomeScreen,
+    Profile: ProfileScreen,
+    Import: ImportScreen,
+    Library: LibraryScreen,
+    BookStore: BookStoreScreen,
   },
 });
 
@@ -92,8 +114,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginHorizontal: 20,
     paddingVertical: 15,
-    borderRadius: 25,
-    borderCurve: 'continuous'
+    borderRadius: 18,
+    borderCurve: 'continuous',
   },
 
   barItem: {
