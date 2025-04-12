@@ -1,14 +1,19 @@
+import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default function HomeScreen() {
   return (
-    <View style = {styles.container}>
-      <Text style = {styles.welcome}>Welcome!</Text>
-      <Link href = "/tabs/details">
-        <Text style = {styles.about}>Go to about page</Text>
-      </Link>
-    </View>
+    <SafeAreaProvider>
+        <SafeAreaView style = {styles.container}>
+            <View style = {styles.container}>
+                <Text style = {styles.welcome}>Welcome!</Text>
+                <Link href = "/tabs/details">
+                    <Text style = {styles.about}>Go to about page</Text>
+                </Link>
+            </View>
+        </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
