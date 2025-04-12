@@ -19,6 +19,12 @@ export default function TabsLayout() {
           headerShown: false,
           title: "Import",
         }}
+        // listeners = {() => ({
+        //   tabPres: (e) => {
+        //     e.preventDefault();
+        //     router.push();
+        //   }
+        // })}
       />
       <Tabs.Screen 
         name = "profile"
@@ -38,7 +44,7 @@ export default function TabsLayout() {
         name = "book-store"
         options = {{
           headerShown: false,
-          title: "Book Store",
+          title: "Store",
         }}
       />
     </Tabs>
