@@ -6,17 +6,16 @@ export default function ImportScreen() {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.centeredView}>
+      <SafeAreaView style={{flex: 1, backgroundColor: "white", padding: 60}}>
         <Modal
           animationType = "slide"
-          transparent = {true}
           visible = {modalVisible}
           onRequestClose = {() => {
             setModalVisible(!modalVisible);
           }}
-          presentationStyle = 'fullScreen'
+          presentationStyle = 'pageSheet'
         >
-          <View style = {styles.centeredView}>
+          <View style = {{flex: 1, backgroundColor: 'white', padding: 60}}>
             <View style = {styles.modalView}>
               <Text style = {styles.modalText}>Hello World!</Text>
               <Pressable
