@@ -21,6 +21,11 @@ export default function ImportScreen() {
               <Pressable
                 style = {[styles.button, styles.buttonClose]}
                 onPress = {() => setModalVisible(!modalVisible)}>
+                <Text style = {styles.textStyle}>Import from files</Text>
+              </Pressable>
+              <Pressable
+                style = {[styles.button, styles.buttonClose]}
+                onPress = {() => setModalVisible(!modalVisible)}>
                 <Text style = {styles.textStyle}>Back to tabs</Text>
               </Pressable>
             </View>
