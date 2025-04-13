@@ -5,7 +5,7 @@
 [![Version](https://img.shields.io/badge/version-1.0.0--stable-blue)](https://github.com/fishnos/Nautica/releases)
 [![TypeScript](https://img.shields.io/badge/TypeScript-%3E%3D3.0.0-blue.svg)](https://react.dev)
 
-*An app that assists reading for dyslexic people.*
+*An app that assists with reading and improves comprehension.*
 
 </div>
 
