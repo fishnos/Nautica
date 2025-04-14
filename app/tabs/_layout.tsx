@@ -1,4 +1,4 @@
-import { Tabs } from 'expo-router';
+import { router, Tabs } from 'expo-router';
 import { Image } from 'react-native';
 import React from 'react';
 import TabBar from '@/components/TabBar';
@@ -19,12 +19,12 @@ export default function TabsLayout() {
           headerShown: false,
           title: "Import",
         }}
-        // listeners = {() => ({
-        //   tabPres: (e) => {
-        //     e.preventDefault();
-        //     router.push();
-        //   }
-        // })}
+        listeners = {{
+          tabPress: (e: any) => {
+            e.preventDefault();
+            router.push("/modals/import-modal");
+          }
+        }}
       />
       <Tabs.Screen 
         name = "profile"
