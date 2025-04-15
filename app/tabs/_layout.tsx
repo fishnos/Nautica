@@ -1,7 +1,7 @@
-import { router, Tabs } from 'expo-router';
-import { Image } from 'react-native';
+import { router, Stack, Tabs } from 'expo-router';
 import React from 'react';
 import TabBar from '@/components/TabBar';
+import StackNavigator from '@/navigation/StackNavigator';
 
 export default function TabsLayout() {
   return (
