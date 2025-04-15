@@ -80,7 +80,7 @@ export default function ImportScreen() {
         </Modal>
         <Pressable
           style = {[styles.button, styles.buttonOpen]}
-          onPress = {() => setModalVisible(true)}>
+          onPress = {() => setModalVisible(!modalVisible)}>
           <Text style = {styles.textStyle}>Import here!</Text>
         </Pressable>
       </SafeAreaView>

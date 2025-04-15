@@ -8,7 +8,7 @@ export default function HomeScreen() {
         <SafeAreaView style = {styles.container}>
             <View style = {styles.container}>
                 <Text style = {styles.welcome}>Welcome!</Text>
-                <Link href = "/tabs/import">
+                <Link href = "/modals/import-modal">
                     <Text style = {styles.about}>Go to import page</Text>
                 </Link>
             </View>

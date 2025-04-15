@@ -1,19 +1,27 @@
 import { pick, types, isErrorWithCode, errorCodes } from '@react-native-documents/picker';
-import { Stack } from 'expo-router';
-import React, { useState } from 'react';
+import { router, Stack, useNavigation } from 'expo-router';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Modal, View, Pressable, Alert, Text, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function ImportModal() {
     const [modalVisible, setModalVisible] = useState(false);
+    const navigation = useNavigation();
+
+    useEffect(() => {
+        navigation.setOptions({ 
+            headerShown: false
+        });
+    }, [navigation]);
 
     return (
         <>
           <Stack.Screen
-            options={{
+            options = {{
               presentation: 'formSheet',
               animation: 'slide_from_bottom',
               title: 'Import Data',
+              headerShown: false,
             }}
           />
           <SafeAreaView style = {{ flex: 1, backgroundColor: "white", padding: 60 }}>
@@ -66,6 +74,16 @@ export default function ImportModal() {
               >
                 <Text style = {styles.textStyle}>Import from files</Text>
               </Pressable>
+              <Pressable
+                style = {[
+                  styles.button, 
+                  styles.buttonClose,
+                  {top: 12},
+                ]}
+                onPress = {() => router.dismiss(3)}
+              >
+                <Text style = {styles.textStyle}>Back to tabs</Text>
+                </Pressable>
             </View>
           </SafeAreaView>
         </>
