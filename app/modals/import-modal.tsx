@@ -8,12 +8,12 @@ export default function ImportModal() {
     const [modalVisible, setModalVisible] = useState(false);
     const navigation = useNavigation();
 
-    useEffect(() => {
-        navigation.setOptions({ 
-            headerShown: false
-        });
-    }, [navigation]);
-
+    // useEffect(() => {
+    //     navigation.setOptions({ 
+    //         headerShown: false
+    //     });
+    // }, [navigation]);
+    
     return (
         <>
           <Stack.Screen

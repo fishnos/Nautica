@@ -5,7 +5,7 @@ PODS:
     - ExpoModulesCore
   - EXManifests (0.15.8):
     - ExpoModulesCore
-  - Expo (52.0.44):
+  - Expo (52.0.46):
     - ExpoModulesCore
   - expo-dev-client (5.0.20):
     - EXManifests
@@ -253,7 +253,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - ExpoSplashScreen (0.29.22):
+  - ExpoSplashScreen (0.29.24):
     - ExpoModulesCore
   - ExpoSymbols (0.2.2):
     - ExpoModulesCore
@@ -2402,7 +2402,7 @@ SPEC CHECKSUMS:
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
   EXConstants: a1f35b9aabbb3c6791f8e67722579b1ffcdd3f18
   EXManifests: 77e77c283c4c53a50b9bddebed25abe93f0b48f1
-  Expo: 83a0ca93325155885341b6cfc988c9c711dd0048
+  Expo: 3e53243e3281214a7d613f8a875c0b732d7512c2
   expo-dev-client: ca3ebc270cb0d3f26e6d9c3e1da19957ef4fcac1
   expo-dev-launcher: dc460ac52ccec6e72f80de7c6fbe011ee312873c
   expo-dev-menu: 32f62936b2b3ebb3ff84fcdcb5b927a36f80393a
@@ -2416,7 +2416,7 @@ SPEC CHECKSUMS:
   ExpoKeepAwake: 2a5f15dd4964cba8002c9a36676319a3394c85c7
   ExpoLinking: 0381341519ca7180a3a057d20edb1cf6a908aaf4
   ExpoModulesCore: dd965804a882f1dbb6036fceea4d912461aeaa0d
-  ExpoSplashScreen: 643666b96a84e8d97d55fac43926fb4183c692d9
+  ExpoSplashScreen: 0e176e85073dfb9686c100c7f9637975d00608dd
   ExpoSymbols: b9f255ce49868d46a73f30e12859efeb8117bcad
   ExpoSystemUI: fb8213e39d19e0861320fa69eb60cad7a839c080
   ExpoWebBrowser: 6890a769e6c9d83da938dceb9a03e764afc3ec9c
