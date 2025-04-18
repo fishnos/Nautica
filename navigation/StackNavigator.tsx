@@ -1,14 +1,19 @@
-import { createStackNavigator } from '@react-navigation/stack';
 import ImportModal from '@/app/modals/import-modal';
+import BookStoreScreen from '@/app/tabs/book-store';
 import HomeScreen from '@/app/tabs/home';
+import LibraryScreen from '@/app/tabs/library';
+import ProfileScreen from '@/app/tabs/profile';
+import { createStaticNavigation } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Stack = createStackNavigator();
+// export const StackNavigations = createStackNavigator({
+//   screens: {
+//     home: HomeScreen,
+//     profile: ProfileScreen,
+//     import: ImportModal,
+//     library: LibraryScreen,
+//     bookStore: BookStoreScreen,
+//   },
+// });
 
-export default function StackNavigator() {
-    return (
-        <Stack.Navigator>
-            <Stack.Screen name = "Home" component = {HomeScreen} />
-            <Stack.Screen name = "Import" component={ImportModal} />
-        </Stack.Navigator>
-    );
-}
+// export const Navigation = createStaticNavigation(StackNavigations);
