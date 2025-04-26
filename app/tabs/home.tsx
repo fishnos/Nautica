@@ -1,6 +1,7 @@
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { Link } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
+import Colors from '@/constants/colors';
 
 export default function HomeScreen() {
   return (
@@ -27,12 +28,12 @@ const styles = StyleSheet.create({
   welcome: {
     fontSize: 50,
     fontWeight: 'bold',
-    color: 'dodgerblue',
+    color: Colors().ThemeColors().Light().TextColors().primaryColor,
   },
 
   about: {
     fontSize: 20,
     fontWeight: 'semibold',
-    color: 'lightslategray',
+    color: Colors().ThemeColors().Light().TextColors().secondaryColor,
   }
 });

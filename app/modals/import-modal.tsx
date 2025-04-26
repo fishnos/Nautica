@@ -1,3 +1,4 @@
+import Colors from '@/constants/colors';
 import { pick, types, isErrorWithCode, errorCodes } from '@react-native-documents/picker';
 import { router, Stack, useNavigation } from 'expo-router';
 import React, { useEffect, useState } from 'react';
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     
     modalView: {
         margin: 20,
-        backgroundColor: 'white',
+        backgroundColor: Colors().ThemeColors().Light().BackgroundColor(),
         borderRadius: 20,
         padding: 35,
         alignItems: 'center',
@@ -113,15 +114,15 @@ const styles = StyleSheet.create({
     },
 
     buttonOpen: {
-        backgroundColor: 'dodgerblue',
+        backgroundColor: Colors().ThemeColors().Light().WidgetBackgroundColor(),
     },
 
     buttonClose: {
-        backgroundColor: 'dodgerblue',
+        backgroundColor: Colors().ThemeColors().Light().WidgetBackgroundColor(),
     },
 
     textStyle: {
-        color: 'white',
+        color: Colors().ThemeColors().Light().TextColors().primaryColor,
         fontWeight: 'bold',
         textAlign: 'center',
     },

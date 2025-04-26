@@ -2,6 +2,7 @@ import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { View, Text, StyleSheet, Pressable, Modal, Alert } from 'react-native';
 import { pick, types, errorCodes, isErrorWithCode } from '@react-native-documents/picker'
 import { useState } from 'react';
+import Colors from '@/constants/colors';
 
 export default function ImportScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
 
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: Colors().ThemeColors().Light().WidgetBackgroundColor(),
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
@@ -117,13 +118,13 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: 'dodgerblue',
+    backgroundColor: Colors().ThemeColors().Light().WidgetBackgroundColor(),
   },
   buttonClose: {
-    backgroundColor: 'dodgerblue',
+    backgroundColor: Colors().ThemeColors().Light().WidgetBackgroundColor(),
   },
   textStyle: {
-    color: 'white',
+    color: Colors().ThemeColors().Light().TextColors().primaryColor,
     fontWeight: 'bold',
     textAlign: 'center',
   },

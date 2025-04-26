@@ -10,9 +10,12 @@ import HomeScreen from '@/app/tabs/home';
 import ImportScreen from '@/app/tabs/import';
 import LibraryScreen from '@/app/tabs/library';
 import BookStoreScreen from '@/app/tabs/book-store';
+import Colors from '@/constants/colors';
 
 export default function TabBar({ state, descriptors, navigation }: { state: any; descriptors: any; navigation: any }) {
-  const { colors } = useTheme();
+  // TODO: fully implement this hook instead of using the constants theme file
+  // const { colors } = useTheme(); 
+  
   const { buildHref } = useLinkBuilder();
 
   return (
@@ -27,7 +30,7 @@ export default function TabBar({ state, descriptors, navigation }: { state: any;
               : route.name;
 
         const isFocused = state.index === index;
-        const iconColor = isFocused ? colors.primary : colors.text;
+        const iconColor = isFocused ? Colors().ThemeColors().Light().TextColors().primaryColor : Colors().ThemeColors().Light().TextColors().secondaryColor;
 
         const onPress = () => {
           const event = navigation.emit({
@@ -53,7 +56,7 @@ export default function TabBar({ state, descriptors, navigation }: { state: any;
             key = {route.key}
             style = {[
               styles.importIcon,
-              {backgroundColor: route.name === "import" ? colors.primary : "transparent"}
+              {backgroundColor: route.name === "import" ? Colors().ThemeColors().Light().TextColors().primaryColor : "transparent"}
             ]}
             href = {buildHref(route.name, route.params)}
             accessibilityState = {isFocused ? { selected: true } : {}}
@@ -65,7 +68,7 @@ export default function TabBar({ state, descriptors, navigation }: { state: any;
             {getIcon(route.name, iconColor)}
             {route.name !== "import" && <Text style = {[
               styles.barItemFocused,
-              {color: isFocused ? colors.primary : colors.text},
+              {color: isFocused ? Colors().ThemeColors().Light().TextColors().primaryColor : Colors().ThemeColors().Light().TextColors().secondaryColor},
             ]}>{label}</Text>}
           </PlatformPressable>
         );
@@ -78,7 +81,7 @@ export default function TabBar({ state, descriptors, navigation }: { state: any;
       case "home":
         return <Feather name = "home" size = {24} color = {color}/>
       case "import":
-        return <Feather name = "plus" size = {30} color = {"white"}/>
+        return <Feather name = "plus" size = {30} color = {Colors().ThemeColors().Light().BackgroundColor()}/>
       case "profile":
         return <AntDesign name = "user" size = {24} color = {color}/>
       case "library":
@@ -108,7 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: Colors().ThemeColors().Light().BackgroundColor(),
     marginHorizontal: 15,
     paddingVertical: 5,
     borderRadius: 25,
@@ -121,7 +124,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     borderRadius: 10,
-    borderColor: "white",
+    borderColor: Colors().ThemeColors().Light().BackgroundColor(),
     paddingVertical: 0,
     paddingHorizontal: 0,
   },
@@ -137,7 +140,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
     borderRadius: 15,
-    borderColor: "white",
+    borderColor: Colors().ThemeColors().Light().BackgroundColor(),
     paddingVertical: 15,
     paddingHorizontal: 0,
   }

@@ -1,6 +1,7 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Colors from '@/constants/colors';
 
 export default function ProfileScreen() {
   return (
@@ -24,6 +25,6 @@ const styles = StyleSheet.create({
   profile: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: 'dodgerblue',
+    color: Colors().ThemeColors().Light().TextColors().primaryColor,
   },
 });
