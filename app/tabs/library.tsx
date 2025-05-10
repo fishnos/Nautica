@@ -1,5 +1,5 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { viewDocument } from '@react-native-documents/viewer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect } from 'react';
@@ -16,6 +16,8 @@ export default function LibraryScreen() {
     { fileName: string; bookmark: string } | undefined
   >();
 
+  const fileButtons: JSX.Element[] = [];
+
   useEffect(() => {
     const fetchBookmark = async () => {
       try {
@@ -31,30 +33,46 @@ export default function LibraryScreen() {
     fetchBookmark();
   }, []);
 
+  function handleViewer() {
+    const lastResults = results[0];
+
+    if (
+      lastResults &&
+      Array.isArray(lastResults) &&
+      lastResults.length > 0 &&
+      lastResults[0]
+    ) {
+      const uriToOpen: string = lastResults[0].uri;
+      viewDocument({ uri: uriToOpen }).catch(handleError);
+    } else if (bookmark) {
+      viewDocument({ bookmark: bookmark.bookmark }).catch(handleError);
+    } else {
+      console.warn('No URI found.', lastResults);
+    }
+  };
+
+  function addFileButton(fileName: string) {
+    fileButtons.push(
+      <Pressable
+        style = {[
+          styles.button,
+          styles.buttonOpen,
+        ]}
+        onPress = {handleViewer}
+      >
+        <Text style = {styles.textStyle}>{fileName}</Text>
+      </Pressable>
+    );
+  }
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style = {styles.container}>
-        <View style = {styles.container}>
-        <Button
-          title = "View a file that was previously opened:"
-          onPress = {() => {
-            const lastResults = results[0];
-            if (
-              lastResults &&
-              Array.isArray(lastResults) &&
-              lastResults.length > 0 &&
-              lastResults[0]
-            ) {
-              const uriToOpen: string = lastResults[0].uri;
-              viewDocument({ uri: uriToOpen }).catch(handleError);
-            } else if (bookmark) {
-              viewDocument({ bookmark: bookmark.bookmark }).catch(handleError);
-            } else {
-              console.warn('No URI found.', lastResults);
-            }
-          }}
-        />
-        </View>
+        <ScrollView>
+          <View style = {styles.container}>
+            {fileButtons}
+          </View>
+        </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -63,8 +81,31 @@ export default function LibraryScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  button: {
+    borderRadius: 9,
+    elevation: 2,
+    width: 360,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
+  buttonOpen: {
+    backgroundColor: Colors().ThemeColors().Light().WidgetBackgroundColor(),
+  },
+
+  buttonClose: {
+    backgroundColor: Colors().ThemeColors().Light().WidgetBackgroundColor(),
+  },
+
+  textStyle: {
+    color: Colors().ThemeColors().Light().TextColors().primaryColor,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 
   library: {
