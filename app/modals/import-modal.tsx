@@ -15,12 +15,55 @@ import { router, Stack, useNavigation } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Modal, View, Pressable, Alert, Text, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { fileButtons } from '../tabs/library';
 
 export default function ImportModal() {
     // const [modalVisible, setModalVisible] = useState(false);
     // const navigation = useNavigation();
 
+    const { handleImport } = useLibraryFunctions();
+
+    const onImportAndClose = async () => {
+        await handleImport();
+        router.back();
+    };
+    
+    return (
+        <SafeAreaProvider>
+            <Stack.Screen
+                name = 'Import:'
+                options = {{
+                    presentation: 'formSheet',
+                    animation: 'slide_from_bottom',
+                    title: 'Import Data',
+                    headerShown: false,
+                }}
+            />
+            <SafeAreaView style = {{ flex: 1, backgroundColor: "white", padding: 60 }}>
+                <View style = {styles.modalView}>
+                    <Text style = {styles.modalText}>Import:</Text>
+                    <Pressable
+                        style = {[styles.button, styles.buttonClose]}
+                        onPress = {onImportAndClose}
+                    >
+                        <Text style = {styles.textStyle}>Import from files</Text>
+                    </Pressable>
+                    <Pressable
+                        style = {[
+                          styles.button, 
+                          styles.buttonClose, 
+                          { top: 12 }
+                        ]}
+                        onPress = {() => router.dismiss(3)}
+                    >
+                        <Text style = {styles.textStyle}>Back to tabs</Text>
+                    </Pressable>
+                </View>
+            </SafeAreaView>
+        </SafeAreaProvider>
+    );
+}
+
+export function useLibraryFunctions() {
     const [results, _setResults] = React.useState<
         Array<DocumentPickerResponse[] | DirectoryPickerResponse | DirectoryPickerResponseLongTerm[]>
     >([]);
@@ -29,8 +72,9 @@ export default function ImportModal() {
         { fileName: string; bookmark: string } | undefined
     >();
 
-    //please make an actual key system at one point
+    const [fileButtonsState, setFileButtons] = useState<JSX.Element[]>([]);
 
+    //TODO: please make an actual key system at one point
     const handleImport = async () => {
         try {
             const [result] = await pick({
@@ -51,8 +95,7 @@ export default function ImportModal() {
                 console.error(result);
             }
 
-            // console.log(result);
-            console.log(fileButtons);
+            console.log(result);
         } catch (err) {
             if (isErrorWithCode(err)) {
                 switch (err.code) {
@@ -90,10 +133,12 @@ export default function ImportModal() {
     //         console.warn('No URI found.', lastResults);
     //     }
     // };
-    
-      function addFileButton(fileName: string, uri: string) {
-        const keyIndex = fileButtons.length;
 
+    useEffect(() => {
+        console.log(fileButtonsState);
+    }, [fileButtonsState]);
+    
+    function addFileButton(fileName: string, uri: string) {
         const handleButtonPress = () => {
             viewDocument({ uri: uri }).catch(handleError);
         };
@@ -105,49 +150,21 @@ export default function ImportModal() {
                     styles.buttonOpen,
                 ]}
                 onPress = {handleButtonPress}
-                key = {keyIndex}
+                key = {fileName}
             >
                 <Text style = {styles.textStyle}>{fileName}</Text>
             </Pressable>
         );
 
-        fileButtons.push(newFileButton);
-      }
+        const newFileButtons = [...fileButtonsState, newFileButton];
+        setFileButtons(newFileButtons);
+    }
 
-    return (
-        <SafeAreaProvider>
-            <Stack.Screen
-                name = 'Import:'
-                options = {{
-                    presentation: 'formSheet',
-                    animation: 'slide_from_bottom',
-                    title: 'Import Data',
-                    headerShown: false,
-                }}
-            />
-            <SafeAreaView style = {{ flex: 1, backgroundColor: "white", padding: 60 }}>
-                <View style = {styles.modalView}>
-                    <Text style = {styles.modalText}>Import:</Text>
-                    <Pressable
-                        style = {[styles.button, styles.buttonClose]}
-                        onPress = {handleImport}
-                    >
-                        <Text style = {styles.textStyle}>Import from files</Text>
-                    </Pressable>
-                    <Pressable
-                        style = {[
-                          styles.button, 
-                          styles.buttonClose, 
-                          { top: 12 }
-                        ]}
-                        onPress = {() => router.dismiss(3)}
-                    >
-                        <Text style = {styles.textStyle}>Back to tabs</Text>
-                    </Pressable>
-                </View>
-            </SafeAreaView>
-        </SafeAreaProvider>
-    );
+    function getFileButtons() {
+        return fileButtonsState;
+    }
+
+    return { handleImport, addFileButton, getFileButtons };
 }
 
 const styles = StyleSheet.create({
@@ -180,7 +197,7 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        marginHorizontal: 10,
+        marginVertical: 10,
     },
 
     button: {

@@ -8,10 +8,7 @@ import {
   DirectoryPickerResponse, 
   DirectoryPickerResponseLongTerm 
 } from '@react-native-documents/picker';
-import { handleError } from '@/utilities/errorHandling';
-import { viewDocument } from '@react-native-documents/viewer';
-
-export const fileButtons: JSX.Element[] = [];
+import { useLibraryFunctions } from '../modals/import-modal';
 
 export default function LibraryScreen() {
   const [results, _setResults] = React.useState<
@@ -21,10 +18,6 @@ export default function LibraryScreen() {
   const [bookmark, setBookmark] = React.useState<
     { fileName: string; bookmark: string } | undefined
   >();
-
-  // const [fileButtons, setFileButtons] = React.useState<
-  //   JSX.Element[]
-  // >([]);
 
   useEffect(() => {
     const fetchBookmark = async () => {
@@ -41,15 +34,24 @@ export default function LibraryScreen() {
     fetchBookmark();
   }, []);
 
+  const { getFileButtons, handleImport, addFileButton } = useLibraryFunctions();
+
   return (
     <SafeAreaProvider>
       <SafeAreaView style = {styles.container}>
         <ScrollView>
           <View style = {styles.container}>
-            <Text style = {styles.textHeader}>
+          <Text style = {styles.textHeader}>
               Files:
+          </Text>
+          {getFileButtons().length > 0 ? (
+              getFileButtons().map(fileButton => fileButton)
+            ) : (
+            <Text style = {styles.textStyle}>
+              No files found...
             </Text>
-            {fileButtons}
+            )
+          }
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
     color: Colors().ThemeColors().Light().TextColors().primaryColor,
     fontWeight: 'bold',
     textAlign: 'center',
+    marginVertical: 10,
   },
 
   textHeader: {
