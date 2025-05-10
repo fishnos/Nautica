@@ -5,7 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import Colors from '@/constants/colors';
 import React from 'react';
-import LibraryScreen from './library';
 
 export default function ImportScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -47,6 +46,7 @@ export default function ImportScreen() {
                     } else {
                       console.error(result);
                     }
+              
                     console.log(result);
                   } catch (err) {
                     if (isErrorWithCode(err)) {

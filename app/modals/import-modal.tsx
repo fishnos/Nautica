@@ -1,14 +1,35 @@
 import Colors from '@/constants/colors';
+import { handleError } from '@/utilities/errorHandling';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { pick, types, isErrorWithCode, errorCodes, DocumentPickerResponse, DirectoryPickerResponse, DirectoryPickerResponseLongTerm } from '@react-native-documents/picker';
+import { 
+    pick, 
+    types, 
+    isErrorWithCode, 
+    errorCodes, 
+    DirectoryPickerResponseLongTerm, 
+    DocumentPickerResponse, 
+    DirectoryPickerResponse 
+} from '@react-native-documents/picker';
+import { viewDocument } from '@react-native-documents/viewer';
 import { router, Stack, useNavigation } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Modal, View, Pressable, Alert, Text, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { fileButtons } from '../tabs/library';
 
 export default function ImportModal() {
     // const [modalVisible, setModalVisible] = useState(false);
     // const navigation = useNavigation();
+
+    const [results, _setResults] = React.useState<
+        Array<DocumentPickerResponse[] | DirectoryPickerResponse | DirectoryPickerResponseLongTerm[]>
+    >([]);
+    
+    const [bookmark, setBookmark] = React.useState<
+        { fileName: string; bookmark: string } | undefined
+    >();
+
+    //please make an actual key system at one point
 
     const handleImport = async () => {
         try {
@@ -25,10 +46,13 @@ export default function ImportModal() {
                     bookmark: result.bookmark,
                 };
                 AsyncStorage.setItem('bookmark', JSON.stringify(bookmarkToStore));
+                addFileButton(bookmarkToStore.fileName, result.uri);
             } else {
                 console.error(result);
             }
-            console.log(result);
+
+            // console.log(result);
+            console.log(fileButtons);
         } catch (err) {
             if (isErrorWithCode(err)) {
                 switch (err.code) {
@@ -48,6 +72,47 @@ export default function ImportModal() {
             }
         }
     };
+
+    // function handleViewer() {
+    //     const lastResults = results[0];
+    
+    //     if (
+    //         lastResults &&
+    //         Array.isArray(lastResults) &&
+    //         lastResults.length > 0 &&
+    //         lastResults[0]
+    //     ) {
+    //         const uriToOpen: string = lastResults[0].uri;
+    //         viewDocument({ uri: uriToOpen }).catch(handleError);
+    //     } else if (bookmark) {
+    //         viewDocument({ bookmark: bookmark.bookmark }).catch(handleError);
+    //     } else {
+    //         console.warn('No URI found.', lastResults);
+    //     }
+    // };
+    
+      function addFileButton(fileName: string, uri: string) {
+        const keyIndex = fileButtons.length;
+
+        const handleButtonPress = () => {
+            viewDocument({ uri: uri }).catch(handleError);
+        };
+
+        const newFileButton = (
+            <Pressable
+                style = {[
+                    styles.fileButton,
+                    styles.buttonOpen,
+                ]}
+                onPress = {handleButtonPress}
+                key = {keyIndex}
+            >
+                <Text style = {styles.textStyle}>{fileName}</Text>
+            </Pressable>
+        );
+
+        fileButtons.push(newFileButton);
+      }
 
     return (
         <SafeAreaProvider>
@@ -106,6 +171,16 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
+    },
+
+    fileButton: {
+        borderRadius: 9,
+        elevation: 2,
+        width: 360,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: 10,
     },
 
     button: {
