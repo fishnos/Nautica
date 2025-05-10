@@ -11,13 +11,25 @@ export default function LibraryScreen() {
   const [results, _setResults] = React.useState<
     Array<DocumentPickerResponse[] | DirectoryPickerResponse | DirectoryPickerResponseLongTerm[]>
   >([]);
+  
   const [bookmark, setBookmark] = React.useState<
     { fileName: string; bookmark: string } | undefined
   >();
 
   useEffect(() => {
-    console.log(JSON.stringify(results, null, 2))
-  }, [results]);
+    const fetchBookmark = async () => {
+      try {
+        const storedBookmark = await AsyncStorage.getItem('bookmark');
+        if (storedBookmark) {
+          setBookmark(JSON.parse(storedBookmark));
+        }
+      } catch (error) {
+        console.error('Failed to load bookmark:', error);
+      }
+    };
+  
+    fetchBookmark();
+  }, []);
 
   return (
     <SafeAreaProvider>

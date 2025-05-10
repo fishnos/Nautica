@@ -1,4 +1,5 @@
 import Colors from '@/constants/colors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { pick, types, isErrorWithCode, errorCodes, DocumentPickerResponse, DirectoryPickerResponse, DirectoryPickerResponseLongTerm } from '@react-native-documents/picker';
 import { router, Stack, useNavigation } from 'expo-router';
 import React, { useEffect, useState } from 'react';
@@ -23,7 +24,7 @@ export default function ImportModal() {
                     fileName: result.name ?? 'unknown name',
                     bookmark: result.bookmark,
                 };
-                localStorage.set('bookmark', JSON.stringify(bookmarkToStore));
+                AsyncStorage.setItem('bookmark', JSON.stringify(bookmarkToStore));
             } else {
                 console.error(result);
             }
