@@ -1,12 +1,12 @@
 import Colors from '@/constants/colors';
-import { pick, types, isErrorWithCode, errorCodes } from '@react-native-documents/picker';
+import { pick, types, isErrorWithCode, errorCodes, DocumentPickerResponse, DirectoryPickerResponse, DirectoryPickerResponseLongTerm } from '@react-native-documents/picker';
 import { router, Stack, useNavigation } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Modal, View, Pressable, Alert, Text, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function ImportModal() {
-    const [modalVisible, setModalVisible] = useState(false);
+    // const [modalVisible, setModalVisible] = useState(false);
     // const navigation = useNavigation();
 
     const handleImport = async () => {
@@ -66,7 +66,7 @@ export default function ImportModal() {
                         style = {[styles.button, styles.buttonClose]}
                         onPress = {handleImport}
                     >
-                        <Text style={styles.textStyle}>Import from files</Text>
+                        <Text style = {styles.textStyle}>Import from files</Text>
                     </Pressable>
                     <Pressable
                         style = {[

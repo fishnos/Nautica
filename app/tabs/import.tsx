@@ -1,8 +1,10 @@
+import { pick, types, errorCodes, isErrorWithCode, DirectoryPickerResponseLongTerm, DirectoryPickerResponse, DocumentPickerResponse } from '@react-native-documents/picker'
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import { View, Text, StyleSheet, Pressable, Modal, Alert } from 'react-native';
-import { pick, types, errorCodes, isErrorWithCode } from '@react-native-documents/picker'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import Colors from '@/constants/colors';
+import React from 'react';
 
 export default function ImportScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -40,7 +42,7 @@ export default function ImportScreen() {
                         fileName: result.name ?? 'unknown name',
                         bookmark: result.bookmark,
                       }
-                      localStorage.set('bookmark', JSON.stringify(bookmarkToStore));
+                      AsyncStorage.setItem('bookmark', JSON.stringify(bookmarkToStore));
                     } else {
                       console.error(result);
                     }
