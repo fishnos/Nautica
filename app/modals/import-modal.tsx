@@ -1,5 +1,6 @@
 import Colors from '@/constants/colors';
 import { handleError } from '@/utilities/errorHandling';
+import useLibraryFunctions from '@/utilities/useLibraryFunctions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { 
     pick, 
@@ -15,7 +16,6 @@ import { router, Stack, useNavigation } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView, Modal, View, Pressable, Alert, Text, StyleSheet } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useLibraryFunctions } from '../tabs/library';
 
 export default function ImportModal() {
     // const [modalVisible, setModalVisible] = useState(false);
@@ -30,7 +30,7 @@ export default function ImportModal() {
     
     return (
         <SafeAreaProvider>
-            <Stack.Screen
+            {/* <Stack.Screen
                 name = 'Import:'
                 options = {{
                     presentation: 'formSheet',
@@ -38,7 +38,7 @@ export default function ImportModal() {
                     title: 'Import Data',
                     headerShown: false,
                 }}
-            />
+            /> */}
             <SafeAreaView style = {{ flex: 1, backgroundColor: "white", padding: 60 }}>
                 <View style = {styles.modalView}>
                     <Text style = {styles.modalText}>Import:</Text>
