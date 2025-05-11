@@ -47,7 +47,7 @@ export default function TabsLayout() {
         listeners = {{
           tabPress: (e: any) => {
             e.preventDefault();
-            router.push('/modals/import-modal');
+            router.navigate('/modals/import-modal');
           }
         }}
       />
