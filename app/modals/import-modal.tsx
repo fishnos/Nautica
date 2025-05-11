@@ -74,6 +74,10 @@ export function useLibraryFunctions() {
 
     const [fileButtonsState, setFileButtons] = useState<JSX.Element[]>([]);
 
+    useEffect(() => {
+        console.log(fileButtonsState);
+    }, [fileButtonsState]);
+
     //TODO: please make an actual key system at one point
     const handleImport = async () => {
         try {
@@ -94,8 +98,7 @@ export function useLibraryFunctions() {
             } else {
                 console.error(result);
             }
-
-            console.log(result);
+            // console.log(result);
         } catch (err) {
             if (isErrorWithCode(err)) {
                 switch (err.code) {
@@ -133,10 +136,6 @@ export function useLibraryFunctions() {
     //         console.warn('No URI found.', lastResults);
     //     }
     // };
-
-    useEffect(() => {
-        console.log(fileButtonsState);
-    }, [fileButtonsState]);
     
     function addFileButton(fileName: string, uri: string) {
         const handleButtonPress = () => {
@@ -157,14 +156,12 @@ export function useLibraryFunctions() {
         );
 
         const newFileButtons = [...fileButtonsState, newFileButton];
+        console.log('Before update:', fileButtonsState);
         setFileButtons(newFileButtons);
+        console.log('After update:', newFileButtons);
     }
 
-    function getFileButtons() {
-        return fileButtonsState;
-    }
-
-    return { handleImport, addFileButton, getFileButtons };
+    return { handleImport, addFileButton, fileButtonsState };
 }
 
 const styles = StyleSheet.create({

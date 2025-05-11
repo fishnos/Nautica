@@ -34,7 +34,7 @@ export default function LibraryScreen() {
     fetchBookmark();
   }, []);
 
-  const { getFileButtons, handleImport, addFileButton } = useLibraryFunctions();
+  const { fileButtonsState } = useLibraryFunctions();
 
   return (
     <SafeAreaProvider>
@@ -44,12 +44,16 @@ export default function LibraryScreen() {
           <Text style = {styles.textHeader}>
               Files:
           </Text>
-          {getFileButtons().length > 0 ? (
-              getFileButtons().map(fileButton => fileButton)
+          {fileButtonsState.length > 0 ? (
+              fileButtonsState.map(fileButton => (
+                <React.Fragment key = {fileButton.key}>
+                  {fileButton}
+                </React.Fragment>
+              ))
             ) : (
-            <Text style = {styles.textStyle}>
-              No files found...
-            </Text>
+              <Text style = {styles.textStyle}>
+                No files found...
+              </Text>
             )
           }
           </View>
